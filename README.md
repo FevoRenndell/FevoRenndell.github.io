@@ -39,11 +39,11 @@ El enfoque fue construir una página **moderna, rápida y limpia**, sin dependen
 
 ## 📁 Estructura del repositorio
 
+```text
 /
 ├── index.html       # Página principal del portafolio
 ├── README.md        # Este archivo
 └── assets/          # (Opcional) Recursos adicionales si se agregan más adelante
-
 
 ---
 
