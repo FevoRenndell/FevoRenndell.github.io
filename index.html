@@ -1,374 +1,907 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio | Luciano Pardo Solano</title>
-    <!-- Script de Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Fuente Inter de Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <style>
-        /* Usamos la fuente Inter como fuente principal */
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        /* Pequeño efecto de gradiente en el texto de los títulos */
-        .text-gradient {
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            background-image: linear-gradient(to right, #3b82f6, #a855f7);
-        }
-        /* Estilo para la línea de tiempo de experiencia */
-        .timeline-item {
-            position: relative;
-            padding-bottom: 2rem;
-            padding-left: 2.5rem;
-        }
-        .timeline-item:before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0.375rem;
-            width: 1rem;
-            height: 1rem;
-            border-radius: 9999px;
-            background-color: #3b82f6; /* Azul */
-            border: 2px solid #1f2937; /* Color de fondo oscuro */
-        }
-        .timeline-item:after {
-            content: '';
-            position: absolute;
-            left: 0.4375rem; /* 7px */
-            top: 1.375rem; /* 22px */
-            bottom: 0;
-            width: 2px;
-            background-color: #374151; /* Gris oscuro */
-        }
-        .timeline-item:last-child:after {
-            display: none; /* Oculta la línea en el último ítem */
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portafolio – Cristian Reyes Sáez</title>
+  <meta name="description" content="Portafolio profesional de Cristian Reyes Sáez, ingeniero en computación e informática, especializado en infraestructura, desarrollo web y servicios cloud.">
+
+  <!-- Fuente Google (opcional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --accent: #3b82f6;
+      --accent-soft: rgba(59,130,246,0.1);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #111827;
+      --border: #1f2937;
+      --radius: 14px;
+      --transition: 0.25s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 40%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout base */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(90deg, rgba(15,23,42,0.95), rgba(15,23,42,0.8));
+      border-bottom: 1px solid rgba(148,163,184,0.15);
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.9rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 600;
+    }
+
+    .nav-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #38bdf8, #3b82f6 40%, #6366f1 70%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      color: #e5e7eb;
+      border: 1px solid rgba(15,23,42,0.8);
+      box-shadow: 0 0 24px rgba(59,130,246,0.75);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .section {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 3.5rem 1.25rem 1rem;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 3rem;
+      align-items: center;
+      padding-top: 4rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 2.5rem;
+      }
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.75);
+      border: 1px solid rgba(148,163,184,0.3);
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .hero-label-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 6px rgba(34,197,94,0.25);
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(90deg,#3b82f6,#a855f7);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 34rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-subtitle strong {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg,#3b82f6,#6366f1);
+      color: #e5e7eb;
+      box-shadow: 0 18px 35px rgba(37,99,235,0.45);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 45px rgba(37,99,235,0.7);
+    }
+
+    .btn-outline {
+      border-color: rgba(148,163,184,0.45);
+      color: var(--muted);
+      background: rgba(15,23,42,0.6);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: #e5e7eb;
+      background: rgba(15,23,42,0.9);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.3rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-meta-item span:first-child {
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    /* Hero Card derecha */
+    .hero-card {
+      background: radial-gradient(circle at top, rgba(59,130,246,0.25) 0, #020617 55%);
+      border-radius: 24px;
+      border: 1px solid rgba(148,163,184,0.35);
+      padding: 1.5rem 1.4rem;
+      box-shadow: 0 24px 60px rgba(15,23,42,0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-badge {
+      position: absolute;
+      top: 1.1rem;
+      right: 1.1rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(148,163,184,0.4);
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .hero-card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-card-role {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .hero-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 1.3rem;
+    }
+
+    .tag {
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.7);
+      border: 1px solid rgba(148,163,184,0.25);
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .hero-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .metric-card {
+      background: rgba(15,23,42,0.85);
+      border-radius: 0.9rem;
+      border: 1px solid rgba(148,163,184,0.35);
+      padding: 0.75rem;
+      font-size: 0.8rem;
+    }
+
+    .metric-label {
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .metric-value {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .hero-card-footer {
+      border-top: 1px dashed rgba(148,163,184,0.35);
+      padding-top: 0.75rem;
+      margin-top: 0.75rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* Secciones genéricas */
+    .section-header {
+      margin-bottom: 1.8rem;
+    }
+
+    .section-title {
+      font-size: 1.45rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 34rem;
+    }
+
+    .section-grid {
+      display: grid;
+      gap: 1.4rem;
+    }
+
+    /* Sobre mí */
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 2rem;
+    }
+
+    @media (max-width: 900px) {
+      .about-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 1.3rem 1.4rem;
+      box-shadow: 0 16px 40px rgba(15,23,42,0.75);
+    }
+
+    .card + .card {
+      margin-top: 1rem;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    /* Skills */
+    .skills-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.6rem;
+    }
+
+    .skills-tags span {
+      padding: 0.22rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(148,163,184,0.3);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .skills-group-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-top: 0.4rem;
+      color: #e5e7eb;
+    }
+
+    /* Proyectos */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.3rem;
+    }
+
+    .project-card {
+      background: rgba(15,23,42,0.95);
+      border-radius: var(--radius);
+      border: 1px solid rgba(148,163,184,0.35);
+      padding: 1.1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), background var(--transition);
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      background: rgba(15,23,42,1);
+      box-shadow: 0 18px 40px rgba(37,99,235,0.35);
+    }
+
+    .project-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .project-description {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      margin-top: 0.3rem;
+      color: var(--muted);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 0.4rem;
+      font-size: 0.82rem;
+    }
+
+    .project-links a {
+      color: var(--accent);
+    }
+
+    /* Experiencia */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 700px) {
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .timeline-date {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .timeline-role {
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .timeline-company {
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+      font-size: 0.88rem;
+    }
+
+    /* Contacto */
+    .contact-card {
+      display: grid;
+      grid-template-columns: minmax(0,3fr) minmax(0,2fr);
+      gap: 2rem;
+    }
+
+    @media (max-width: 900px) {
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .contact-info p {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .contact-list {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .contact-list div {
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-list span {
+      display: inline-block;
+      min-width: 70px;
+      color: #9ca3af;
+      font-size: 0.85rem;
+    }
+
+    footer {
+      border-top: 1px solid rgba(148,163,184,0.15);
+      padding: 1.4rem 1.25rem 1.6rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+  </style>
 </head>
-<body class="bg-gray-900 text-gray-300 selection:bg-blue-500 selection:text-white">
-
-    <!-- ===== SECCIÓN 0: NAVEGACIÓN ===== -->
-    <header class="bg-gray-900/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#inicio" class="text-xl font-bold text-white hover:text-blue-400 transition-colors">
-                Luciano Pardo S.
-            </a>
-            <div class="hidden md:flex space-x-6">
-                <a href="#sobre-mi" class="text-gray-300 hover:text-blue-400 transition-colors">Sobre Mí</a>
-                <a href="#proyectos" class="text-gray-300 hover:text-blue-400 transition-colors">Proyectos</a>
-                <a href="#experiencia" class="text-gray-300 hover:text-blue-400 transition-colors">Experiencia</a>
-                <a href="#servicios" class="text-gray-300 hover:text-blue-400 transition-colors">Servicios</a>
-                <a href="#contacto" class="bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition-transform hover:scale-105">
-                    Contacto
-                </a>
-            </div>
-            <!-- Menú móvil (simplificado) -->
-            <div class="md:hidden">
-                <a href="#contacto" class="bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700">
-                    Contacto
-                </a>
-            </div>
-        </nav>
-    </header>
-
-    <main class="container mx-auto px-6">
-
-        <!-- ===== SECCIÓN 1: PORTADA (INICIO) ===== -->
-        <section id="inicio" class="min-h-[calc(100vh-68px)] flex flex-col md:flex-row items-center justify-center py-20 md:py-0">
-            <div class="md:w-3/5 text-center md:text-left">
-                <h1 class="text-5xl md:text-7xl font-black text-white leading-tight">
-                    Luciano Pardo Solano
-                </h1>
-                <h2 class="text-3xl md:text-4xl font-bold text-gradient mt-2">
-                    Ingeniero en IA y Automatización
-                </h2>
-                <p class="text-lg text-gray-400 mt-6 max-w-xl">
-                    Estudiante de Ingeniería en Computación con experiencia en el ciclo de vida completo de proyectos de IA.
-                    Apasionado por MLOps y la creación de soluciones tecnológicas escalables en la nube.
-                </p>
-                <!-- Datos de Contacto -->
-                <div class="mt-8 flex justify-center md:justify-start space-x-4">
-                    <a href="mailto:lucpa123@gmail.com" class="bg-gray-800 p-3 rounded-full hover:bg-gray-700 transition-all transform hover:scale-110" title="Correo Electrónico">
-                        <!-- Icono de Email (SVG) -->
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    </a>
-                    <a href="https://linkedin.com/in/luciano-pardo-s" target="_blank" rel="noopener noreferrer" class="bg-gray-800 p-3 rounded-full hover:bg-gray-700 transition-all transform hover:scale-110" title="LinkedIn">
-                        <!-- Icono de LinkedIn (SVG) -->
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                    </a>
-                    <!-- *** IMPORTANTE: Reemplaza '#' con tu enlace de GitHub *** -->
-                    <a href="https://github.com/lucianoprd1" target="_blank" rel="noopener noreferrer" class="bg-gray-800 p-3 rounded-full hover:bg-gray-700 transition-all transform hover:scale-110" title="GitHub">
-                        <!-- Icono de GitHub (SVG) -->
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Foto Profesional (Opcional) -->
-            <!-- Descomenta y reemplaza 'tu-foto.jpg' cuando tengas una -->
-            <!--
-            <div class="md:w-2/5 mt-10 md:mt-0 flex justify-center">
-                <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gray-800 border-4 border-blue-500 overflow-hidden">
-                    <img src="https://placehold.co/400x400/1f2937/3b82f6?text=Tu+Foto" alt="Luciano Pardo Solano" class="w-full h-full object-cover">
-                </div>
-            </div>
-            -->
-        </section>
-
-        <!-- ===== SECCIÓN 2: PERFIL PROFESIONAL (SOBRE MÍ) ===== -->
-        <section id="sobre-mi" class="py-24">
-            <h2 class="text-4xl font-black text-white text-center">
-                Sobre <span class="text-gradient">Mí</span>
-            </h2>
-            <p class="text-lg text-gray-400 text-center max-w-3xl mx-auto mt-6">
-                Ingeniero Informático con experiencia en el desarrollo de soluciones de datos, automatización e inteligencia artificial. Participo activamente en la toma de decisiones técnicas, aportando tanto en la arquitectura como en la implementación de sistemas que procesan y aprovechan datos de forma inteligente.
-            </p>
-
-            <div class="mt-16 grid md:grid-cols-2 gap-12 items-start">
-                <!-- Habilidades -->
-                <div>
-                    <h3 class="text-2xl font-bold text-white mb-6">Habilidades Técnicas</h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="bg-gray-800 text-blue-300 text-sm font-medium px-4 py-2 rounded-full">Python</span>
-                        <span class="bg-gray-800 text-blue-300 text-sm font-medium px-4 py-2 rounded-full">Ansible</span>
-                        <span class="bg-gray-800 text-blue-300 text-sm font-medium px-4 py-2 rounded-full">LangGraph</span>
-                        <span class="bg-gray-800 text-blue-300 text-sm font-medium px-4 py-2 rounded-full">Langchain</span>
-                        <span class="bg-gray-800 text-blue-300 text-sm font-medium px-4 py-2 rounded-full">FastAPI</span>
-                        <span class="bg-gray-800 text-blue-300 text-sm font-medium px-4 py-2 rounded-full">Streamlit</span>
-                        <span class="bg-gray-800 text-blue-300 text-sm font-medium px-4 py-2 rounded-full">Docker</span>
-                        <span class="bg-gray-800 text-blue-300 text-sm font-medium px-4 py-2 rounded-full">AWS</span>
-                        <span class="bg-gray-800 text-blue-300 text-sm font-medium px-4 py-2 rounded-full">PostgreSQL</span>
-                        <span class="bg-gray-800 text-blue-300 text-sm font-medium px-4 py-2 rounded-full">MongoDB</span>
-                        <span class="bg-gray-800 text-blue-300 text-sm font-medium px-4 py-2 rounded-full">ChromaDB</span>
-                    </div>
-
-                    <h3 class="text-2xl font-bold text-white mb-6 mt-10">Habilidades Blandas</h3>
-                    <ul class="list-inside list-disc space-y-2 text-gray-300">
-                        <li>Rápida capacidad de aprendizaje y adopción de tecnologías.</li>
-                        <li>Fuerte orientación a la resolución de problemas.</li>
-                        <li>Pensamiento crítico y toma de decisiones técnicas.</li>
-                        <li>Liderazgo y supervisión de equipos técnicos.</li>
-                        <li>Enfoque colaborativo y comunicación efectiva.</li>
-                    </ul>
-                </div>
-                <!-- Áreas de Interés -->
-                <div class="bg-gray-800 p-8 rounded-lg border border-gray-700">
-                    <h3 class="text-2xl font-bold text-white mb-4">Áreas de Interés Profesional</h3>
-                    <p class="text-gray-400 mb-6">
-                        Mi meta laboral es continuar especializándome, llegando a ser un Machine Learning Engineer especializado en el ciclo de vida MLOps.
-                    </p>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-blue-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                            <span class="text-gray-300">Gestión de infraestructura para modelos ML.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-blue-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                            <span class="text-gray-300">Automatización de CI/CD para Machine Learning.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-blue-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                            <span class="text-gray-300">Monitoreo de modelos y pipelines de reentrenamiento.</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== SECCIÓN 3: PROYECTOS DESTACADOS ===== -->
-        <section id="proyectos" class="py-24">
-            <h2 class="text-4xl font-black text-white text-center">
-                Proyectos <span class="text-gradient">Destacados</span>
-            </h2>
-            <p class="text-lg text-gray-400 text-center max-w-3xl mx-auto mt-6">
-                Estos son algunos de los proyectos en los que he trabajado, aplicando mis habilidades en IA, automatización y desarrollo cloud.
-            </p>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
-                <!-- Proyecto 1 -->
-                <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 transform transition-all hover:scale-105 hover:border-blue-500">
-                    <!-- Reemplaza con una captura de pantalla -->
-                    <img src="https://placehold.co/600x400/1f2937/3b82f6?text=Proyecto+de+Agentes+IA" alt="Proyecto Agentes de IA" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">Creación de Agentes de IA</h3>
-                        <p class="text-gray-400 mb-4 text-sm">
-                            Desarrollo de agentes de IA autónomos capaces de ejecutar tareas complejas, utilizando APIs y bases de datos vectoriales.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-gray-700 text-gray-300 text-xs font-medium px-3 py-1 rounded-full">LangGraph</span>
-                            <span class="bg-gray-700 text-gray-300 text-xs font-medium px-3 py-1 rounded-full">FastAPI</span>
-                            <span class="bg-gray-700 text-gray-300 text-xs font-medium px-3 py-1 rounded-full">ChromaDB</span>
-                        </div>
-                        <!-- Añade enlace al proyecto si existe -->
-                        <!-- <a href="#" class="inline-block mt-4 text-blue-400 hover:text-blue-300 font-medium">Ver más &rarr;</a> -->
-                    </div>
-                </div>
-
-                <!-- Proyecto 2 -->
-                <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 transform transition-all hover:scale-105 hover:border-blue-500">
-                    <!-- Reemplaza con una captura de pantalla -->
-                    <img src="https://placehold.co/600x400/1f2937/3b82f6?text=Proyecto+Chatbot" alt="Proyecto Chatbot" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">Desarrollo de Chatbots con RAG</h3>
-                        <p class="text-gray-400 mb-4 text-sm">
-                            Implementación de chatbots (Retrieval-Augmented Generation) para responder preguntas sobre bases de conocimiento específicas.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-gray-700 text-gray-300 text-xs font-medium px-3 py-1 rounded-full">Langchain</span>
-                            <span class="bg-gray-700 text-gray-300 text-xs font-medium px-3 py-1 rounded-full">Streamlit</span>
-                            <span class="bg-gray-700 text-gray-300 text-xs font-medium px-3 py-1 rounded-full">ChromaDB</span>
-                        </div>
-                        <!-- <a href="#" class="inline-block mt-4 text-blue-400 hover:text-blue-300 font-medium">Ver más &rarr;</a> -->
-                    </div>
-                </div>
-                
-                <!-- Proyecto 3 -->
-                <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 transform transition-all hover:scale-105 hover:border-blue-500">
-                    <!-- Reemplaza con una captura de pantalla -->
-                    <img src="https://placehold.co/600x400/1f2937/3b82f6?text=Proyecto+Automatizaci%C3%B3n" alt="Proyecto Automatización" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">Automatización de Infraestructura</h3>
-                        <p class="text-gray-400 mb-4 text-sm">
-                            Liderazgo de proyecto de automatización de procesos manuales y gestión de configuración utilizando Ansible y Docker.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-gray-700 text-gray-300 text-xs font-medium px-3 py-1 rounded-full">Ansible</span>
-                            <span class="bg-gray-700 text-gray-300 text-xs font-medium px-3 py-1 rounded-full">Python</span>
-                            <span class="bg-gray-700 text-gray-300 text-xs font-medium px-3 py-1 rounded-full">Docker</span>
-                            <span class="bg-gray-700 text-gray-300 text-xs font-medium px-3 py-1 rounded-full">AWS</span>
-                        </div>
-                        <!-- <a href="#" class="inline-block mt-4 text-blue-400 hover:text-blue-300 font-medium">Ver más &rarr;</a> -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== SECCIÓN 4: EXPERIENCIA Y FORMACIÓN (CV) ===== -->
-        <section id="experiencia" class="py-24">
-            <h2 class="text-4xl font-black text-white text-center">
-                Experiencia y <span class="text-gradient">Formación</span>
-            </h2>
-
-            <div class="grid md:grid-cols-2 gap-16 mt-16">
-                <!-- Columna de Experiencia -->
-                <div>
-                    <h3 class="text-3xl font-bold text-white mb-8">Experiencia Laboral</h3>
-                    <div class="space-y-8">
-                        <!-- Item de Experiencia -->
-                        <div class="timeline-item">
-                            <h4 class="text-xl font-bold text-white">Data & AI Engineer</h4>
-                            <p class="text-blue-400 font-medium">Platwave</p>
-                            <span class="text-sm text-gray-400">Noviembre 2024 - Presente</span>
-                            <ul class="mt-4 list-disc list-outside space-y-2 text-gray-400 ml-5">
-                                <li>Liderazgo de proyecto de automatización con Ansible (Ene 2025 - Abr 2025).</li>
-                                <li>Creación de agentes de IA (LangGraph, FastAPI, ChromaDB).</li>
-                                <li>Desarrollo de chatbots (Langchain, Streamlit).</li>
-                                <li>Automatización de procesos con Python y Ansible.</li>
-                                <li>Desarrollo de imágenes Docker para entornos de ejecución.</li>
-                                <li>Gestión de bases de datos PostgreSQL y MongoDB.</li>
-                                <li>Implementación de soluciones en AWS (EC2, S3, ECS, RDS, Bedrock).</li>
-                                <li>Supervisión de equipo técnico y toma de decisiones de arquitectura.</li>
-                            </ul>
-                        </div>
-                        <!-- Puedes añadir más items de experiencia aquí -->
-                    </div>
-                </div>
-
-                <!-- Columna de Formación y Certificaciones -->
-                <div>
-                    <!-- Formación -->
-                    <h3 class="text-3xl font-bold text-white mb-8">Formación Académica</h3>
-                    <div class="timeline-item">
-                        <h4 class="text-xl font-bold text-white">Ingeniería en Computación e Informática</h4>
-                        <p class="text-blue-400 font-medium">Universidad Andrés Bello</p>
-                        <span class="text-sm text-gray-400">En curso</span>
-                    </div>
-
-                    <!-- Certificaciones -->
-                    <h3 class="text-3xl font-bold text-white mb-8 mt-12">Certificaciones</h3>
-                    <div class="space-y-5">
-                        <div class="bg-gray-800 p-5 rounded-lg border border-gray-700">
-                            <h4 class="font-bold text-white">Developing Advanced Automation with Red Hat Ansible Automation Platform (DO374)</h4>
-                            <p class="text-sm text-blue-400">Red Hat</p>
-                        </div>
-                        <div class="bg-gray-800 p-5 rounded-lg border border-gray-700">
-                            <h4 class="font-bold text-white">Cisco Certified Network Associate (CCNA)</h4>
-                            <p class="text-sm text-blue-400">Cisco</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== SECCIÓN 5: SERVICIOS QUE PUEDES OFRECER ===== -->
-        <section id="servicios" class="py-24 bg-gray-950/50 rounded-xl">
-            <h2 class="text-4xl font-black text-white text-center">
-                Servicios <span class="text-gradient">Profesionales</span>
-            </h2>
-            <p class="text-lg text-gray-400 text-center max-w-3xl mx-auto mt-6">
-                Como profesional, puedo aportar valor a tu empresa o proyecto en las siguientes áreas:
-            </p>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
-                <!-- Servicio 1 -->
-                <div class="bg-gray-800 p-8 rounded-lg border border-gray-700">
-                    <svg class="w-12 h-12 text-blue-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17.25l.038-.038A5.25 5.25 0 0115.75 12a5.25 5.25 0 01-6.038-5.212l-.038-.038m-3.75 3.75H3m12 12V9m-9 9V9m9 12h3m-3-3h3m-3-3h3m-3-3h3M9 3v3m0 0h3m-3 0H6m3 0v3M6 6v3m0-3H3m3 0v3"></path></svg>
-                    <h3 class="text-xl font-bold text-white mb-2">Desarrollo de Soluciones de IA</h3>
-                    <p class="text-gray-400">Creación de agentes inteligentes, chatbots con RAG y soluciones de procesamiento de datos utilizando Langchain, LangGraph y FastAPI.</p>
-                </div>
-                <!-- Servicio 2 -->
-                <div class="bg-gray-800 p-8 rounded-lg border border-gray-700">
-                    <svg class="w-12 h-12 text-blue-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.34 15.84c-.688 0-1.25-.563-1.25-1.25s.563-1.25 1.25-1.25c.688 0 1.25.563 1.25 1.25s-.563 1.25-1.25 1.25z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.5 12c0-1.32-.422-2.547-1.15-3.563m-2.6-2.6c-1.016-.728-2.243-1.15-3.563-1.15-4.14 0-7.5 3.36-7.5 7.5s3.36 7.5 7.5 7.5c1.32 0 2.547-.422 3.563-1.15m2.6-2.6c.728-1.016 1.15-2.243 1.15-3.563z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.34 15.84c.688 0 1.25.563 1.25 1.25s-.563 1.25-1.25 1.25c-.688 0-1.25-.563-1.25-1.25s.563-1.25 1.25-1.25zM12.188 12c0-1.031-.844-1.875-1.875-1.875s-1.875.844-1.875 1.875S9.28 13.875 10.312 13.875s1.876-.844 1.876-1.875z"></path></svg>
-                    <h3 class="text-xl font-bold text-white mb-2">Automatización y MLOps</h3>
-                    <p class="text-gray-400">Implementación de pipelines de CI/CD, automatización de infraestructura (IaC) con Ansible y despliegue de modelos en la nube (AWS, Docker).</p>
-                </div>
-                <!-- Servicio 3 -->
-                <div class="bg-gray-800 p-8 rounded-lg border border-gray-700">
-                    <svg class="w-12 h-12 text-blue-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.636 5.636a9 9 0 1012.728 0M12 3v9"></path></svg>
-                    <h3 class="text-xl font-bold text-white mb-2">Consultoría y Arquitectura Cloud</h3>
-                    <p class="text-gray-400">Diseño de arquitecturas de soluciones en AWS (EC2, S3, RDS, ECS, Bedrock) y toma de decisiones técnicas para garantizar la escalabilidad y eficiencia.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== SECCIÓN 6: CARTA DE PRESENTACIÓN (CONTACTO) ===== -->
-        <!-- La "Carta de presentación" se integra como una llamada a la acción para contactarte -->
-        <section id="contacto" class="py-24 text-center">
-            <h2 class="text-4xl font-black text-white">
-                Hablemos.
-            </h2>
-            <p class="text-lg text-gray-400 max-w-2xl mx-auto mt-6">
-                Estoy buscando activamente oportunidades para aplicar mis habilidades y crecer como profesional en el área de MLOps. Si mi perfil encaja con su equipo, no dude en contactarme.
-            </p>
-            <a href="mailto:lucpa123@gmail.com" class="inline-block bg-blue-600 text-white text-lg font-medium px-8 py-4 rounded-lg mt-10 hover:bg-blue-700 transition-all transform hover:scale-105">
-                Enviar un correo
-            </a>
-            <div class="mt-12 flex justify-center space-x-6">
-                <a href="https://linkedin.com/in/luciano-pardo-s" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-blue-400 transition-colors">
-                    LinkedIn
-                </a>
-                <span class="text-gray-600">|</span>
-                <!-- Reemplaza '#' con tu enlace de GitHub -->
-                <a href="#" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-blue-400 transition-colors">
-                    GitHub
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <!-- ===== FOOTER ===== -->
-    <footer class="border-t border-gray-800 mt-16">
-        <div class="container mx-auto px-6 py-6 text-center text-gray-500">
-            <p>&copy; 2025 Luciano Pardo Solano. Todos los derechos reservados.</p>
+<body>
+<div class="page">
+  <!-- Navegación -->
+  <header>
+    <nav class="nav">
+      <div class="nav-brand">
+        <div class="nav-logo">CR</div>
+        <div>
+          <div style="font-size: 0.92rem;">Cristian Reyes Sáez</div>
+          <div style="font-size: 0.75rem; color: var(--muted);">
+            Infraestructura • Desarrollo web • Cloud
+          </div>
         </div>
-    </footer>
+      </div>
+      <div class="nav-links">
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#habilidades">Habilidades</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </nav>
+  </header>
 
+  <main>
+    <!-- HERO -->
+    <section class="section hero">
+      <div>
+        <div class="hero-label">
+          <div class="hero-label-dot"></div>
+          Disponible para proyectos y colaboración
+        </div>
+        <h1 class="hero-title">
+          Hola, soy <span>Cristian Reyes Sáez</span>
+        </h1>
+        <p class="hero-subtitle">
+          Ingeniero en computación e informática, con experiencia en
+          <strong>infraestructura, continuidad operativa, servicios cloud y desarrollo web</strong>.
+          Me gusta diseñar soluciones que realmente funcionan en producción, no solo en papel.
+        </p>
+
+        <div class="hero-actions">
+          <!-- Cambia el href por tu CV si lo publicas en algún lado -->
+          <a class="btn btn-primary" href="#proyectos">
+            Ver proyectos destacados
+          </a>
+          <a class="btn btn-outline" href="#contacto">
+            Contacto directo
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span>+15 años</span>
+            <span>Experiencia en TI e infraestructura</span>
+          </div>
+          <div class="hero-meta-item">
+            <span>Chile</span>
+            <span>Trabajando con empresas y laboratorios técnicos</span>
+          </div>
+          <div class="hero-meta-item">
+            <span>Enfoque</span>
+            <span>Soluciones estables, escalables y seguras</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="hero-card-badge">Portafolio profesional</div>
+        <div class="hero-card-title">Resumen rápido</div>
+        <div class="hero-card-role">Ingeniero en computación e informática</div>
+
+        <div class="hero-card-tags">
+          <span class="tag">Dev web</span>
+          <span class="tag">Infraestructura</span>
+          <span class="tag">Cloud</span>
+          <span class="tag">Automatización</span>
+          <span class="tag">Docker</span>
+        </div>
+
+        <div class="hero-card-grid">
+          <div class="metric-card">
+            <div class="metric-label">Áreas clave</div>
+            <div class="metric-value">Infra + Web</div>
+            <div class="metric-label">Diseño de soluciones para empresas reales</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Stack actual</div>
+            <div class="metric-value">JS / React / Node</div>
+            <div class="metric-label">Más enfoque en buenas prácticas y escalabilidad</div>
+          </div>
+        </div>
+
+        <div class="hero-card-footer">
+          Actualmente desarrollando proyectos que combinan
+          <strong>desarrollo de software</strong> y
+          <strong>gestión de infraestructura</strong>, con foco en
+          disponibilidad, seguridad y experiencia de usuario.
+        </div>
+      </aside>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section id="sobre-mi" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Sobre mí</h2>
+        <p class="section-subtitle">
+          Un poco de contexto sobre quién soy, qué hago y qué tipo de problemas me gusta resolver.
+        </p>
+      </div>
+
+      <div class="about-layout">
+        <div>
+          <div class="card">
+            <h3 class="card-title">Perfil</h3>
+            <p>
+              Soy Cristian Reyes Sáez, ingeniero en computación e informática en formación, con una larga trayectoria trabajando en
+              <strong>infraestructura de TI, soporte a sistemas críticos y servicios cloud</strong>.
+              Me interesa especialmente el punto donde se encuentran la
+              <strong>operación diaria de una empresa</strong> y el
+              <strong>software que la soporta</strong>.
+            </p>
+            <br>
+            <p>
+              Disfruto mucho diseñar soluciones que sean claras para el usuario, mantenibles en el tiempo y que consideren aspectos como
+              seguridad, respaldo de información, continuidad operativa y buenas prácticas en el desarrollo.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Cómo trabajo</h3>
+            <p>
+              Me gusta ir paso a paso, con enfoque en la comprensión del problema real, antes de elegir tecnologías.
+              Prefiero soluciones que se puedan explicar con claridad al cliente y al equipo, y que luego puedan crecer sin volverse caóticas.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div class="card">
+            <h3 class="card-title">En este portafolio encontrarás</h3>
+            <p>
+              Una selección de proyectos que representan mi evolución como profesional:
+            </p>
+            <ul style="margin-top: 0.6rem; padding-left: 1.1rem; font-size: 0.92rem; color: var(--muted);">
+              <li>Desarrollo de aplicaciones web con JavaScript y React.</li>
+              <li>Proyectos académicos aplicados a problemas reales de empresas.</li>
+              <li>Trabajos relacionados con infraestructura, redes y servicios cloud.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HABILIDADES -->
+    <section id="habilidades" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Habilidades y stack</h2>
+        <p class="section-subtitle">
+          Una mezcla entre infraestructura tradicional, servicios cloud y desarrollo web moderno.
+        </p>
+      </div>
+
+      <div class="section-grid">
+        <div class="card">
+          <h3 class="card-title">Desarrollo web</h3>
+          <p>Enfoque en aplicaciones web modernas, organizadas y escalables.</p>
+          <div class="skills-tags">
+            <span>HTML5</span>
+            <span>CSS3</span>
+            <span>JavaScript</span>
+            <span>TypeScript</span>
+            <span>React</span>
+            <span>Vite</span>
+            <span>Node.js (en progreso)</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Infraestructura & Cloud</h3>
+          <p>Experiencia gestionando entornos productivos y servicios para empresas.</p>
+          <div class="skills-tags">
+            <span>Linux</span>
+            <span>Servidores en la nube</span>
+            <span>Redes y VPN</span>
+            <span>Docker</span>
+            <span>Git & GitHub</span>
+            <span>Servicios de correo corporativo</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Forma de trabajo</h3>
+          <p>Comunicación clara, documentación y foco en la continuidad del negocio.</p>
+          <div class="skills-tags">
+            <span>Documentación</span>
+            <span>Análisis de requerimientos</span>
+            <span>Trabajo con clientes</span>
+            <span>Soporte a usuarios</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROYECTOS -->
+    <section id="proyectos" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Proyectos destacados</h2>
+        <p class="section-subtitle">
+          Algunos ejemplos de trabajos y proyectos que representan lo que puedo aportar.
+          Puedes ir agregando y actualizando esta sección a medida que avances.
+        </p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Proyecto 1 -->
+        <article class="project-card">
+          <div class="project-title">Portafolio personal en GitHub Pages</div>
+          <div class="project-description">
+            Sitio web estático desarrollado para presentar mi perfil profesional, experiencia y proyectos.
+            Desplegado en GitHub Pages, utilizando HTML, CSS y buenas prácticas de estructuración.
+          </div>
+          <div class="project-meta">
+            <span>HTML • CSS</span>
+            <span>2025</span>
+          </div>
+          <div class="project-links">
+            <a href="https://fevorenndell.github.io/" target="_blank" rel="noopener noreferrer">Ver sitio</a>
+            <a href="https://github.com/FevoRenndell/FevoRenndell.github.io" target="_blank" rel="noopener noreferrer">Ver código</a>
+          </div>
+        </article>
+
+        <!-- Proyecto 2 (puedes adaptar el texto) -->
+        <article class="project-card">
+          <div class="project-title">SGALT – Sistema de Gestión Administrativo (proyecto de título)</div>
+          <div class="project-description">
+            Proyecto en desarrollo orientado a laboratorios técnicos, combinando backend en Node.js y frontend en React.
+            El foco está en la trazabilidad de la información, la gestión de ensayos y la organización de los procesos internos.
+          </div>
+          <div class="project-meta">
+            <span>React • Node.js • DB</span>
+            <span>En desarrollo</span>
+          </div>
+          <div class="project-links">
+            <!-- Cuando tengas el repo público, actualiza este enlace -->
+            <a href="#" target="_blank" rel="noopener noreferrer">Repositorio (próximamente)</a>
+          </div>
+        </article>
+
+        <!-- Proyecto 3 (ejemplo genérico, puedes reemplazarlo) -->
+        <article class="project-card">
+          <div class="project-title">Infraestructura y servicios para laboratorio geotécnico</div>
+          <div class="project-description">
+            Trabajo continuo en la implementación y mantención de servicios TI para un laboratorio técnico:
+            servidores, respaldo de información, servicios de correo, VPN para sucursales y soporte a usuarios.
+          </div>
+          <div class="project-meta">
+            <span>Infraestructura • Soporte</span>
+            <span>Experiencia real</span>
+          </div>
+          <div class="project-links">
+            <a href="#contacto">Más detalles por conversación</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- EXPERIENCIA -->
+    <section id="experiencia" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Experiencia</h2>
+        <p class="section-subtitle">
+          Una síntesis de mi trayectoria profesional, enfocada en tecnología e infraestructura.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">2007 – hoy</div>
+            <div>
+              <div class="timeline-role">Profesional de TI – Holding empresarial</div>
+              <div class="timeline-company">Servicios de soporte, infraestructura y sistemas</div>
+              <p>
+                Trabajo continuo en la operación y evolución de la infraestructura tecnológica,
+                asegurando la continuidad operativa de los servicios, soporte a usuarios,
+                coordinación con proveedores y participación en proyectos de mejora.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Actualidad</div>
+            <div>
+              <div class="timeline-role">Estudiante – Ingeniería en Computación e Informática</div>
+              <div class="timeline-company">Universidad Andrés Bello (UNAB)</div>
+              <p>
+                Formación profesional que complementa mi experiencia práctica con fundamentos de ingeniería de software,
+                arquitectura de sistemas, gestión de proyectos y desarrollo de aplicaciones web.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Contacto</h2>
+        <p class="section-subtitle">
+          Si te interesa conversar sobre un proyecto, colaboración o una oportunidad laboral, estaré encantado de leerte.
+        </p>
+      </div>
+
+      <div class="card contact-card">
+        <div class="contact-info">
+          <p>
+            La mejor forma de contactarme es por correo electrónico. También puedo compartir más detalles de mi experiencia
+            o documentación de proyectos si lo necesitas.
+          </p>
+          <div class="contact-list">
+            <!-- Cambia por tu correo de contacto principal -->
+            <div><span>Correo:</span> <a href="mailto:c.reyes@qalitic.com">c.reyes@qalitic.com</a></div>
+            <!-- Si tienes LinkedIn, ponlo aquí -->
+            <div><span>LinkedIn:</span> <a href="#" target="_blank" rel="noopener noreferrer">Próximamente</a></div>
+            <!-- Si quieres mostrar tu GitHub -->
+            <div><span>GitHub:</span> <a href="https://github.com/FevoRenndell" target="_blank" rel="noopener noreferrer">github.com/FevoRenndell</a></div>
+          </div>
+        </div>
+
+        <div>
+          <p style="font-size: 0.9rem; color: var(--muted);">
+            ✉️ Si quieres, puedes copiar este texto en el asunto de tu correo:
+          </p>
+          <p style="margin-top: 0.5rem; font-size: 0.9rem; background: var(--bg-alt); padding: 0.75rem 0.9rem; border-radius: var(--radius); border: 1px solid rgba(148,163,184,0.35);">
+            <strong>Asunto sugerido:</strong><br>
+            “Consulta sobre colaboración/proyecto – Visto en portafolio”
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      © <span id="year"></span> Cristian Reyes Sáez. Portafolio personal.
+    </div>
+  </footer>
+</div>
+
+<script>
+  // Año dinámico en el footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
